@@ -7,17 +7,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.roshanadke.navigation3android.data.sampleNoteList
 
 @Composable
-internal fun NoteDetailsScreen(
+internal fun NoteDetailsScreenUi(
     id: Int,
     modifier: Modifier = Modifier
 ) {
+    val note = sampleNoteList.find {note ->
+        note.id == id
+    }
     Column(
         modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Details for note #$id")
+        note?.let {
+            Text("Details for note #${note.title}")
+        }
     }
 }

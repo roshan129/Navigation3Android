@@ -9,7 +9,9 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSavedStateNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.rememberSceneSetupNavEntryDecorator
-import com.roshanadke.navigation3android.NoteListScreen
+import com.roshanadke.navigation3android.NoteDetailsScreenUi
+import com.roshanadke.navigation3android.NoteListScreenUi
+import com.roshanadke.navigation3android.data.sampleNoteList
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -20,7 +22,7 @@ data class NoteDetailScreen(val id: Int) : NavKey
 
 @Composable
 fun NavigationRoot(
-    modifier: Modifier = Modifier,
+    modifier: Modifier  = Modifier,
 ) {
     val backStack = rememberNavBackStack(NoteListScreen)
     NavDisplay(
@@ -37,7 +39,12 @@ fun NavigationRoot(
                     NavEntry(
                         key = key,
                     ) {
-                        NoteListScreen()
+                        NoteListScreenUi(
+                            onNoteClick = { noteId ->
+                                backStack.add(NoteDetailScreen(noteId))
+                            },
+                            noteList = sampleNoteList,
+                        )
                     }
                 }
 
@@ -45,7 +52,7 @@ fun NavigationRoot(
                     NavEntry(
                         key = key,
                     ) {
-                        NoteDetailScreen(id = key.id)
+                        NoteDetailsScreenUi(id = key.id)
                     }
                 }
 
