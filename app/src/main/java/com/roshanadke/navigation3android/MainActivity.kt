@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.roshanadke.navigation3android.navigation.NavigationRoot
 import com.roshanadke.navigation3android.ui.theme.Navigation3AndroidTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
             Navigation3AndroidTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
-
+                    NavigationRoot(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
